@@ -2,7 +2,7 @@
     "manifest_version": 2,
 
     "name": "8comic 快速看",
-    "description": "方便的 8comic 快速鍵",
+    "description": "用左右鍵就可以看 8comic",
     "version": "0.1",
 
     "icons": {
@@ -11,11 +11,11 @@
         "128": "images/icon-128.png"
     },
     "content_scripts": [{
-        "matches": ["http://www.8comic.com/*"],
+        "matches": ["http://new.comicvip.com/*"],
         "js": ["js/content.js"]
     }],
     "permissions": [
         "tabs",
-        "http://www.8comic.com/*"
+        "http://new.comicvip.com/*"
     ]
 }
