@@ -1,9 +1,11 @@
 document.onkeyup = function(evt) {
-    var direction;
+    var link;
     if(evt.keyCode == 37)
-        direction = 'left';
+        link = document.getElementById('prev');
     else if(evt.keyCode == 39)
-        direction = 'right';
+        link = document.getElementById('next');
     else
         return;
+
+    link.click();
 };
