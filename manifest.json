@@ -11,11 +11,15 @@
         "128": "images/icon-128.png"
     },
     "content_scripts": [{
-        "matches": ["http://new.comicvip.com/*"],
+        "matches": [
+            "http://new.comicvip.com/*", 
+            "http://www.8comic.com/*"
+        ],
         "js": ["js/content.js"]
     }],
     "permissions": [
         "tabs",
-        "http://new.comicvip.com/*"
+        "http://new.comicvip.com/*",
+        "http://www.8comic.com/*"
     ]
 }
