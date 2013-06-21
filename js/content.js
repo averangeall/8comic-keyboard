@@ -7,6 +7,13 @@ function clickButton(buttonId) {
     document.getElementById(buttonId).click();
 }
 
+function removeTwoCh() {
+    var oldUrl = window.location.toString();
+    var newUrl = oldUrl.replace(/&ch=.+/, '');
+    if(oldUrl != newUrl)
+        window.location = newUrl;
+}
+
 document.onkeydown = function(evt) {
     if(evt.keyCode == LEFT)
         clickButton('prev');
@@ -24,3 +31,7 @@ document.onkeydown = function(evt) {
 setInterval(function() {
     clickButton('zf');
 }, 100);
+
+setInterval(function() {
+    removeTwoCh();
+}, 1000);
