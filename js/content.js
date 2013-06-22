@@ -9,9 +9,20 @@ function clickButton(buttonId) {
 
 function removeTwoCh() {
     var oldUrl = window.location.toString();
-    var newUrl = oldUrl.replace(/&ch=.+/, '');
-    if(oldUrl != newUrl)
+    var newUrl = oldUrl.replace(/&ch=[1-9-]+/, '');
+    if(oldUrl != newUrl) {
         window.location = newUrl;
+    }
+}
+
+function slideToFit() {
+    document.getElementById('TheImg').scrollIntoView();
+}
+
+function adjust() {
+    clickButton('zf');
+    removeTwoCh();
+    slideToFit();
 }
 
 document.onkeydown = function(evt) {
@@ -28,10 +39,9 @@ document.onkeydown = function(evt) {
     return false;
 };
 
-setInterval(function() {
-    clickButton('zf');
-}, 100);
+var img = document.getElementById('TheImg');
+if(img.complete)
+    adjust();
+else
+    img.onload = adjust;
 
-setInterval(function() {
-    removeTwoCh();
-}, 1000);
