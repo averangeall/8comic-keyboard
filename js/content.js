@@ -1,7 +1,9 @@
-const LEFT = 37;
-const RIGHT = 39;
-const PAGE_UP = 33;
-const PAGE_DOWN = 34;
+var actions = {
+    prev: [kbMap['left']],
+    next: [kbMap['right']],
+    prevvol: [kbMap['page-up']],
+    nextvol: [kbMap['page-down']],
+};
 
 function clickButton(buttonId) {
     document.getElementById(buttonId).click();
@@ -25,18 +27,31 @@ function adjust() {
     slideToFit();
 }
 
+function fillKbMap() {
+    for(var action in actions) {
+        function setDefault(action) {
+            chrome.storage.sync.get(action, function(res) {
+                if(res[action] != undefined)
+                    actions[action] = res[action];
+                else {
+                    var tuple = {};
+                    tuple[action] = actions[action];
+                    chrome.storage.sync.set(tuple);
+                }
+            });
+        }
+        setDefault(action);
+    }
+}
+
 document.onkeydown = function(evt) {
-    if(evt.keyCode == LEFT)
-        clickButton('prev');
-    else if(evt.keyCode == RIGHT)
-        clickButton('next');
-    else if(evt.keyCode == PAGE_UP)
-        clickButton('prevvol');
-    else if(evt.keyCode == PAGE_DOWN)
-        clickButton('nextvol');
-    else
-        return true;
-    return false;
+    for(var action in actions) {
+        if(actions[action].indexOf(evt.keyCode) != -1) {
+            clickButton(action);
+            return false;
+        }
+    }
+    return true;
 };
 
 var img = document.getElementById('TheImg');
@@ -44,4 +59,6 @@ if(img.complete)
     adjust();
 else
     img.onload = adjust;
+
+fillKbMap();
 

@@ -15,9 +15,14 @@
             "http://new.comicvip.com/*", 
             "http://www.8comic.com/*"
         ],
-        "js": ["js/content.js"]
+        "js": [
+            "js/keyboard.js",
+            "js/content.js"
+        ]
     }],
+    "options_page": "options.html",
     "permissions": [
+        "storage",
         "tabs",
         "http://new.comicvip.com/*",
         "http://www.8comic.com/*"
