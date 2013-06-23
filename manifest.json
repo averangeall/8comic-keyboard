@@ -17,6 +17,8 @@
         ],
         "js": [
             "js/keyboard.js",
+            "js/actions.js",
+            "js/storage.js",
             "js/content.js"
         ]
     }],
